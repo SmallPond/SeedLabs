@@ -35,9 +35,9 @@ Address: 202.89.233.100
 在官方文档中详细说明了如何用 `BIND (Berkeley Internet Name Domain)`搭建一个DNS服务器。因为在我们使用的seed Ubuntu中已经安装了，所以有兴趣可以读一读文档，在此我们直接跳过。
 
 直接给出配置好的结果，当我们在VMB中`ping www.bing.com`时，其回向主机`10.0.2.130`发送DNS查询请求，然后DNS服务器会再此向`198.41.0.4`主机转发查询请求，得到结果后回复请求到VMB。因为 此时DNS服务器上还没有缓存，需要向外继续查询。
-![2.1](_v_images/20191012153159411_24878.png)
+![2.1](https://github.com/SmallPond/SeedLabs/tree/master/_v_images/20191012153159411_24878.png)
 而当DNS Server 已经缓存了主机需要查询的主机名时，会直接返回DNS回复。如下图所示。
-![2.2](_v_images/20191012153550654_592.png)
+![2.2](https://github.com/SmallPond/SeedLabs/tree/master/_v_images/20191012153550654_592.png)
 
 ## Task 3: Host a Zone in the Local DNS Server
 setp1: Create zones. 打开`/etc/bind/named.conf`文件，添加以下内容。应当注意，example.com域名保留供文档使用，并不归任何人所有，因此可以安全地使用它。
@@ -78,7 +78,7 @@ PING www.bank32.com (122.207.86.18) 56(84) bytes of data.
 
 ## Task 5: Directly Spoofing Response to User
 
-![DNS欺骗攻击](_v_images/20191012172543638_12300.png)
+![DNS欺骗攻击](https://github.com/SmallPond/SeedLabs/tree/master/https://github.com/SmallPond/SeedLabs/tree/master/_v_images/20191012172543638_12300.png)
 如果伪造的DNS响应满足以下条件，则将被用户的计算机接受：
 > 1. The source IP address must match the IP address of the DNS server.
 > 2. The destination IP address must match the IP address of the user’s machine.
@@ -101,7 +101,7 @@ sudo netwox 105 --hostname www.example.net --hostnameip "122.207.86.18" --authns
 ```
 在VM A主机上运行以上命令，在VMB 主机上`ping www.example.net`可看到请求重定向到了`122.207.86.18`上。而当VM A上不运行该程序时，会直接返回未知主机`ping: unknown host www.example.net`
 
-![DNS劫持](_v_images/20191013171621337_14311.png)
+![DNS劫持](https://github.com/SmallPond/SeedLabs/tree/master/_v_images/20191013171621337_14311.png)
 
 ## Task 6: DNS Cache Poisoning Attack
 以上的攻击方法有一个很明显的缺点，每次用户查询都需要回复一个伪造的DNS回应包。所以接下来我们要去欺骗DNS服务器，然后让其缓存这个映射，之后每次都会从缓存中拿出结果回应给请求DNS查询的用户。这就是` DNS Cache Poisoning Attack`。
@@ -152,7 +152,7 @@ def spoof_dns(pkt):
 pkt = sniff(filter='udp and dst port 53', prn=spoof_dns)
 ```
 在VMA上运行以上代码，在DNS服务器上清缓存，然后在VMB中`ping www.example.net`，再执行`dig www.example.com`可的下图内容。
-![task8](_v_images/20191013173148384_2884.png)
+![task8](https://github.com/SmallPond/SeedLabs/tree/master/_v_images/20191013173148384_2884.png)
 
 
 ## Task 9: Targeting the Additional Section
@@ -187,7 +187,7 @@ def spoof_dns(pkt):
 pkt = sniff(filter='udp and dst port 53', prn=spoof_dns)
 ```
 在VMA上运行以上代码，在DNS服务器上清缓存，然后在VMB中`ping www.example.net`，再执行`dig www.example.com`可的下图内容。
-![task9](_v_images/20191013181929641_6732.png)
+![task9](https://github.com/SmallPond/SeedLabs/tree/master/_v_images/20191013181929641_6732.png)
 
 # 实验总结
 这个实现还比较简单的，从原理上也比较容易理解。实验的难点在于对DNS协议具体的内容熟悉。
