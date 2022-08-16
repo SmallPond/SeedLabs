@@ -1,6 +1,4 @@
-网络安全课上接触到SeedProject，强调动手做安全实验，拒绝纸上谈兵 -> `talk is cheap, Show me the code`；拒绝脚本小子，做到知其然，知其所以然。在这边向大家推荐一波，毕竟这么好的平台不能一个人独享（hhhh...）。
-
-市面上很多网络安全书籍都是互相"借鉴"，同时也只是在原理上描述了现存攻击的方式与原理。但我认为网络与计算机安全方面的内容，如果只是枯燥的阅读书籍是很容易遗忘而且不能即时获得一种成就感。雪城大学Wenliang Du教授认识到这一点，推出[SeedProject](https://seedsecuritylabs.org/index.html)。这个网站提供了一个预建的Ubuntu16.04虚拟机映像，很多实验环境都已经预装好了。[这里有教你怎么配置实验环境](https://seedsecuritylabs.org/lab_env.html)。
+雪城大学Wenliang Du教授推出[SeedProject](https://seedsecuritylabs.org/index.html)。这个网站提供了一个预建的Ubuntu16.04虚拟机映像，很多实验环境都已经预装好了。[这里有教你怎么配置实验环境](https://seedsecuritylabs.org/lab_env.html)。
 
 
 这里不仅仅只有关于网络安全的实验，还有系统安全（我觉得这个最有意思）、软件安全甚至还有安卓安全等等。
